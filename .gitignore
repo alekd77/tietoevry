@@ -1,0 +1,93 @@
+# C++
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+
+# CMake
+cmake-build-debug
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+*.cmake
+
+# CLion
+.idea/
+*.iml
+*.ipr
+*.iws
+.cproject
+.externalToolBuilders/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+*.vs/
+*.vscode/
+*.sln
+*.csproj
+*.userprefs
+*.xcodeproj/
+*.xcworkspace/
+*.sln.ide
+*.sln.docstates.user
+*.sln.ide-shelve
+*.suo-shelve
+*.user-shelve
+*.testsettings
+
+# Visual Studio 2019
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vcxproj.user.*
+*.sln.ide-shelve
+*.suo-shelve
+*.user-shelve
+*.vcxproj.vspscc
+*.vcxproj.lastbuildstate
+*.vcxproj.files
+
+# CLion
+*.cbp
+
+# Additional
+Testing
+mapa.txt
+rozkazy.txt
+status.txt
+
+# For Now
+Makefile
+CMakeLists.txt
+
