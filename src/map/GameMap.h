@@ -20,7 +20,7 @@ private:
   int width;
   int height;
 
-  void initializeGrid(const std::string &mapDataFile);
+  void loadGameMapDataFromFile(const std::string &mapDataFile);
 };
 
 #endif // TIETOEVRY_GAMEMAP_H

@@ -5,7 +5,7 @@
 #include <sstream>
 
 GameMap::GameMap(const std::string &mapDataFile) {
-  initializeGrid(mapDataFile);
+  loadGameMapDataFromFile(mapDataFile);
   this->height = static_cast<int>(grid.size());
   this->width = static_cast<int>(grid.at(0).size());
 }
@@ -25,7 +25,7 @@ void GameMap::debugDisplay() {
   }
 }
 
-void GameMap::initializeGrid(const std::string &mapDataFile) {
+void GameMap::loadGameMapDataFromFile(const std::string &mapDataFile) {
   std::ifstream inputFile(mapDataFile);
 
   if (!inputFile.is_open()) {
