@@ -9,15 +9,11 @@ public:
               char buildingUnit, int buildRemainingTurns);
 
   char getBuildingUnit() const;
-
   int getBuildRemainingTurns() const;
 
   bool canMove() const override;
-
   bool canAttack() const override;
-
   bool canBuild() const override;
-
   void debugDisplay() const override;
 
 private:

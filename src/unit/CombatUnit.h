@@ -9,19 +9,13 @@ public:
              int actionPoints, int cost, int range, int buildTime);
 
   int getActionPoints() const;
-
   int getCost() const;
-
   int getRange() const;
-
   int getBuildTime() const;
 
   bool canMove() const override;
-
   bool canAttack() const override;
-
   bool canBuild() const override;
-
   void debugDisplay() const override;
 
   virtual int calculateDamageForUnitType(char targetUnitType) const = 0;
