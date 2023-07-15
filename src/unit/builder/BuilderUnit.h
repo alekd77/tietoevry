@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_BUILDERUNIT_H
 #define TIETOEVRY_BUILDERUNIT_H
 
-#include "Unit.h"
+#include "../Unit.h"
 
 class BuilderUnit : public Unit {
 public:

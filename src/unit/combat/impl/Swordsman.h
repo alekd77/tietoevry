@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_SWORDSMAN_H
 #define TIETOEVRY_SWORDSMAN_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Swordsman : public CombatUnit {
 public:

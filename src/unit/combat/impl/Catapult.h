@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_CATAPULT_H
 #define TIETOEVRY_CATAPULT_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Catapult : public CombatUnit {
 public:

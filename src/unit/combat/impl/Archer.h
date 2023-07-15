@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_ARCHER_H
 #define TIETOEVRY_ARCHER_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Archer : public CombatUnit {
 public:

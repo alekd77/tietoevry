@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_PIKEMAN_H
 #define TIETOEVRY_PIKEMAN_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Pikeman : public CombatUnit {
 public:

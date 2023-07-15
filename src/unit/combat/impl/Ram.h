@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_RAM_H
 #define TIETOEVRY_RAM_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Ram : public CombatUnit {
 public:

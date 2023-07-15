@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_WORKER_H
 #define TIETOEVRY_WORKER_H
 
-#include "CombatUnit.h"
+#include "../CombatUnit.h"
 
 class Worker : public CombatUnit {
 public:
