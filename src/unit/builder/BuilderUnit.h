@@ -5,20 +5,24 @@
 
 class BuilderUnit : public Unit {
 public:
-  BuilderUnit(int id, char type, int hp, const FieldCoordinates &coordinates,
-              char buildingUnit, int buildRemainingTurns);
+    BuilderUnit(int id, char type, int hp, const FieldCoordinates& coordinates,
+            char buildingUnit, int buildRemainingTurns);
 
-  char getBuildingUnit() const;
-  int getBuildRemainingTurns() const;
+    char getBuildingUnit() const;
 
-  bool canMove() const override;
-  bool canAttack() const override;
-  bool canBuild() const override;
-  void debugDisplay() const override;
+    int getBuildRemainingTurns() const;
+
+    bool canMove() const override;
+
+    bool canAttack() const override;
+
+    bool canBuild() const override;
+
+    void debugDisplay() const override;
 
 private:
-  char buildingUnit;
-  int buildRemainingTurns;
+    char buildingUnit;
+    int buildRemainingTurns;
 };
 
 #endif // TIETOEVRY_BUILDERUNIT_H

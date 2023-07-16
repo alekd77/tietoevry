@@ -5,10 +5,11 @@
 
 class Worker : public CombatUnit {
 public:
-  Worker(int id, const FieldCoordinates &coordinates);
-  Worker(int id, int hp, const FieldCoordinates &coordinates);
+    Worker(int id, const FieldCoordinates& coordinates);
 
-  int calculateDamageForUnitType(char targetUnitType) const override;
+    Worker(int id, int hp, const FieldCoordinates& coordinates);
+
+    int calculateDamageForUnitType(char targetUnitType) const override;
 };
 
 #endif // TIETOEVRY_WORKER_H

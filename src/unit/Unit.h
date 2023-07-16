@@ -5,26 +5,35 @@
 
 class Unit {
 public:
-  Unit(int id, char type, int hp, const FieldCoordinates &coordinates);
-  virtual ~Unit();
+    Unit(int id, char type, int hp, const FieldCoordinates& coordinates);
 
-  int getID() const;
-  char getType() const;
-  int getHP() const;
-  const FieldCoordinates &getCoordinates() const;
-  bool isAlive() const;
-  void receiveDamage(int damage);
+    virtual ~Unit();
 
-  virtual bool canMove() const = 0;
-  virtual bool canAttack() const = 0;
-  virtual bool canBuild() const = 0;
-  virtual void debugDisplay() const;
+    int getID() const;
+
+    char getType() const;
+
+    int getHP() const;
+
+    const FieldCoordinates& getCoordinates() const;
+
+    bool isAlive() const;
+
+    void receiveDamage(int damage);
+
+    virtual bool canMove() const = 0;
+
+    virtual bool canAttack() const = 0;
+
+    virtual bool canBuild() const = 0;
+
+    virtual void debugDisplay() const;
 
 private:
-  int id;
-  char type;
-  int hp;
-  FieldCoordinates coordinates;
+    int id;
+    char type;
+    int hp;
+    FieldCoordinates coordinates;
 };
 
 #endif // TIETOEVRY_UNIT_H

@@ -5,10 +5,15 @@
 
 class Base : public BuilderUnit {
 public:
-  Base(int id, const FieldCoordinates &coordinates);
-  Base(int id, int hp, const FieldCoordinates &coordinates);
-  Base(int id, int hp, const FieldCoordinates &coordinates, char buildingUnit,
-       int buildRemainingTurns);
+    Base(int id, const FieldCoordinates& coordinates);
+
+    Base(int id, int hp, const FieldCoordinates& coordinates);
+
+    Base(int id, int hp, const FieldCoordinates& coordinates,
+            char buildingUnit);
+
+    Base(int id, int hp, const FieldCoordinates& coordinates, char buildingUnit,
+            int buildRemainingTurns);
 };
 
 #endif // TIETOEVRY_BASE_H
