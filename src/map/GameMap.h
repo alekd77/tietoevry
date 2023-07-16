@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_GAMEMAP_H
 #define TIETOEVRY_GAMEMAP_H
 
-#include "Field.h"
+#include "../util/MapDataFileParser.h"
 #include <string>
 #include <vector>
 
@@ -11,18 +11,17 @@ public:
 
     const std::vector<std::vector<Field>>& getGrid() const;
 
-    int getWidth() const;
-
     int getHeight() const;
+
+    int getWidth() const;
 
     void debugDisplay();
 
 private:
+    MapDataFileParser mapDataFileParser;
     std::vector<std::vector<Field>> grid;
-    int width;
     int height;
-
-    void loadGameMapDataFromFile(const std::string& mapDataFile);
+    int width;
 };
 
 #endif // TIETOEVRY_GAMEMAP_H
