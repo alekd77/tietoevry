@@ -20,11 +20,13 @@ const GameMap& Player::getGameMap()
     return *gameMap;
 }
 
-const ActiveUnits& Player::getPlayerActiveUnits() {
+const ActiveUnits& Player::getPlayerActiveUnits()
+{
     return gameStatus.getPlayerActiveUnits();
 }
 
-const ActiveUnits& Player::getEnemyActiveUnits() {
+const ActiveUnits& Player::getEnemyActiveUnits()
+{
     return gameStatus.getEnemyActiveUnits();
 }
 
@@ -160,16 +162,51 @@ void Player::orderBuildingUnit(const CombatUnit& unit)
             unit.getType());
 }
 
-std::vector<FieldCoordinates>
-Player::findShortestPath(const FieldCoordinates& start,
-        const FieldCoordinates& destination)
+bool Player::isValidDestinationFieldForMove(const FieldCoordinates& coordinates)
 {
-    // Lazy initialization, creates gameMap only if needed
-    if (!gameMap) {
-        initializeGameMap();
+    if (!isFieldOnMap(coordinates)) {
+        return false;   // Field outside the map
     }
 
-    return std::vector<FieldCoordinates>();
+    if (isObstacleOnField(coordinates)) {
+        return false;    // obstacle on field
+    }
+
+    if (isEnemyUnitOnField(coordinates)) {
+        return false; // enemy unit on field
+    }
+
+    return true;
+}
+
+bool Player::isUnitInAttackRange(const CombatUnit& attacker,
+        const FieldCoordinates& targetPosition)
+{
+    return attacker.getRange()
+            >=std::abs(attacker.getCoordinates().getX()-targetPosition.getX())
+                    +std::abs(attacker.getCoordinates().getY()
+                            -targetPosition.getY());
+}
+
+FieldCoordinates Player::findMaxTravelDistanceField(
+        const std::vector<FieldCoordinates>& path,
+        const FieldCoordinates& start, int unitActionPoints)
+{
+    bool found = false;
+    FieldCoordinates maxTravelDistanceField = {-1, -1};
+
+    for (int i = 0; i<path.size(); ++i) {
+        int distance = calculateRequiredActionPointsForMove(start, path.at(i));
+
+        if (unitActionPoints>=distance) {
+            maxTravelDistanceField = path.at(i);
+            found = true;
+        } else {
+            break;
+        }
+    }
+
+    return found ? maxTravelDistanceField : start;
 }
 
 bool Player::isFieldOnMap(const FieldCoordinates& field)
@@ -241,23 +278,6 @@ bool Player::doesPlayerUnitExist(int unitID) const
     }
 
     return false;
-}
-
-bool Player::isValidDestinationFieldForMove(const FieldCoordinates& coordinates)
-{
-    if (!isFieldOnMap(coordinates)) {
-        return false;   // Field outside the map
-    }
-
-    if (isObstacleOnField(coordinates)) {
-        return false;    // obstacle on field
-    }
-
-    if (isEnemyUnitOnField(coordinates)) {
-        return false; // enemy unit on field
-    }
-
-    return true;
 }
 
 int Player::calculateRequiredActionPointsForMove(const FieldCoordinates& start,

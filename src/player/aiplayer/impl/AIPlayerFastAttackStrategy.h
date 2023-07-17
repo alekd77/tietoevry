@@ -23,15 +23,7 @@ private:
 
     void orderEnemyBaseAttack();
 
-    bool isUnitInAttackRange(int attackRange,
-            const FieldCoordinates& attackerPosition,
-            const FieldCoordinates& targetPosition);
-
     void orderKnightsMoving();
-
-    FieldCoordinates
-    findMaxTravelDistanceField(const std::vector<FieldCoordinates>& path,
-            const FieldCoordinates& start, int unitActionPoints);
 
     std::vector<FieldCoordinates> findKnightAttackPositionsToEnemyBase();
 };

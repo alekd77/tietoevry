@@ -35,12 +35,15 @@ public:
 
     void orderBuildingUnit(const CombatUnit& unit);
 
-    std::vector<FieldCoordinates>
-    findShortestPath(const FieldCoordinates& start,
-            const FieldCoordinates& destination);
-
 protected:
     bool isValidDestinationFieldForMove(const FieldCoordinates& coordinates);
+
+    bool isUnitInAttackRange(const CombatUnit& attacker,
+            const FieldCoordinates& targetPosition);
+
+    FieldCoordinates
+    findMaxTravelDistanceField(const std::vector<FieldCoordinates>& path,
+            const FieldCoordinates& start, int unitActionPoints);
 
 private:
     std::string gameMapFile;

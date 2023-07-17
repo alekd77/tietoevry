@@ -17,7 +17,7 @@ public:
             const FieldCoordinates& end);
 
 private:
-    std::vector<std::vector<bool>> pathGrid;    // true = available field, false = obstacle
+    std::vector<std::vector<bool>> pathGrid;    // true = available field, false = obstacle, enemy unit
     int gridWidth;
     int gridHeight;
 

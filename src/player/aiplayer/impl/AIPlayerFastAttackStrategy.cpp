@@ -67,16 +67,14 @@ AIPlayerFastAttackStrategy::findKnightAttackPositionsToEnemyBase()
     std::vector<FieldCoordinates> validAttackPositions;
     FieldCoordinates enemyBasePosition =
             getEnemyActiveUnits().getBase().getCoordinates();
-    int knightAttackRange = Knight(-1, {1, 1}).getRange();
-
     const GameMap& gameMap = getGameMap();
 
     for (int y = 0; y<gameMap.getHeight(); ++y) {
         for (int x = 0; x<gameMap.getWidth(); ++x) {
+            Knight knight(-1, {x, y});
             FieldCoordinates currentPosition(x, y);
 
-            if (isUnitInAttackRange(knightAttackRange, currentPosition,
-                    enemyBasePosition)
+            if (isUnitInAttackRange(knight, enemyBasePosition)
                     && isValidDestinationFieldForMove(currentPosition)) {
                 validAttackPositions.push_back(currentPosition);
             }
@@ -84,14 +82,6 @@ AIPlayerFastAttackStrategy::findKnightAttackPositionsToEnemyBase()
     }
 
     return validAttackPositions;
-}
-
-bool AIPlayerFastAttackStrategy::isUnitInAttackRange(int attackRange,
-        const FieldCoordinates& attackerPosition,
-        const FieldCoordinates& targetPosition)
-{
-    return attackRange>=std::abs(attackerPosition.getX()-targetPosition.getX())
-            +std::abs(attackerPosition.getY()-targetPosition.getY());
 }
 
 void AIPlayerFastAttackStrategy::orderKnightsMoving()
@@ -122,26 +112,4 @@ void AIPlayerFastAttackStrategy::orderKnightsMoving()
             orderMovingUnit(*knightUnit, maxTravelDistanceField);
         }
     }
-}
-
-FieldCoordinates AIPlayerFastAttackStrategy::findMaxTravelDistanceField(
-        const std::vector<FieldCoordinates>& path,
-        const FieldCoordinates& start, int unitActionPoints)
-{
-    bool found = false;
-    FieldCoordinates maxTravelDistanceField = {-1, -1};
-
-    for (int i = 0; i<path.size(); ++i) {
-        int distance = (std::abs(start.getX()-path.at(i).getX())
-                +std::abs(start.getY()-path.at(i).getY()));
-
-        if (unitActionPoints>=distance) {
-            maxTravelDistanceField = path.at(i);
-            found = true;
-        } else {
-            break;
-        }
-    }
-
-    return found ? maxTravelDistanceField : start;
 }
