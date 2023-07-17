@@ -89,7 +89,7 @@ bool Player::isAttackingUnitPossible(const Unit& attacker,
         return false;
     }
 
-    if (!doesPlayerUnitExist(target.getID())) {
+    if (!doesEnemyUnitExist(target.getID())) {
         return false;
     }
 
@@ -277,6 +277,21 @@ bool Player::doesPlayerUnitExist(int unitID) const
     return false;
 }
 
+bool Player::doesEnemyUnitExist(int unitID) const
+{
+    if (gameStatus.getEnemyActiveUnits().getBase().getID()==unitID) {
+        return true;
+    }
+
+    for (const auto& unit: gameStatus.getEnemyActiveUnits().getActiveCombatUnits()) {
+        if (unit->getID()==unitID) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int Player::calculateRequiredActionPointsForMove(const FieldCoordinates& start,
         const FieldCoordinates& destination) const
 {
@@ -287,8 +302,8 @@ int Player::calculateRequiredActionPointsForMove(const FieldCoordinates& start,
 int Player::calculateRequiredRangeForAttack(const CombatUnit& attacker,
         const FieldCoordinates& target) const
 {
-    return std::abs(attacker.getRange()-target.getX())
-            +std::abs(attacker.getRange()-target.getY());
+    return std::abs(attacker.getCoordinates().getX()-target.getX())
+            +std::abs(attacker.getCoordinates().getY()-target.getY());
 }
 
 int Player::calculateRequiredActionPointsForAttack() const

@@ -59,6 +59,8 @@ private:
 
     bool doesPlayerUnitExist(int unitID) const;
 
+    bool doesEnemyUnitExist(int unitID) const;
+
     int calculateRequiredActionPointsForMove(const FieldCoordinates& start,
             const FieldCoordinates& destination) const;
 
