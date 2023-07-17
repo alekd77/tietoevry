@@ -21,3 +21,8 @@ void GameMap::debugDisplay()
         std::cout << std::endl;
     }
 }
+
+const Field& GameMap::getField(const FieldCoordinates& coordinates) const
+{
+    return grid.at(coordinates.getY()).at(coordinates.getX());
+}

@@ -5,6 +5,7 @@
 
 class FieldCoordinates {
 public:
+    FieldCoordinates();
     FieldCoordinates(int x, int y);
 
     int getX() const;

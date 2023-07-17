@@ -1,10 +1,10 @@
 #include "FieldCoordinates.h"
 
+FieldCoordinates::FieldCoordinates()
+        :x(0), y(0) { }
+
 FieldCoordinates::FieldCoordinates(int x, int y)
-{
-    this->x = x;
-    this->y = y;
-}
+        :x(x), y(y) { }
 
 int FieldCoordinates::getX() const { return x; }
 

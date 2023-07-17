@@ -1,12 +1,15 @@
 #include "GameStatus.h"
 
-GameStatus::GameStatus(const std::string &statusDataFile) : statusDataFileParser(statusDataFile), currentGoldAmount(
+GameStatus::GameStatus(const std::string& statusDataFile)
+        :statusDataFileParser(statusDataFile), currentGoldAmount(
         statusDataFileParser.parseCurrentGoldAmount()), playerActiveUnits(
         statusDataFileParser.parsePlayerUnits()), enemyActiveUnits(
-        statusDataFileParser.parseEnemyUnits()) {}
+        statusDataFileParser.parseEnemyUnits()) { }
 
 long GameStatus::getCurrentGoldAmount() const { return currentGoldAmount; }
 
-const ActiveUnits &GameStatus::getPlayerActiveUnits() const { return playerActiveUnits; }
+const ActiveUnits&
+GameStatus::getPlayerActiveUnits() const { return playerActiveUnits; }
 
-const ActiveUnits &GameStatus::getEnemyActiveUnits() const { return enemyActiveUnits; }
+const ActiveUnits&
+GameStatus::getEnemyActiveUnits() const { return enemyActiveUnits; }

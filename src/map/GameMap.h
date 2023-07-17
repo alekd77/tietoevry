@@ -11,6 +11,8 @@ public:
 
     const std::vector<std::vector<Field>>& getGrid() const;
 
+    const Field& getField(const FieldCoordinates& coordinates) const;
+
     int getHeight() const;
 
     int getWidth() const;
