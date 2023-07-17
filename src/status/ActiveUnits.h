@@ -16,6 +16,8 @@ public:
     const std::vector<std::unique_ptr<CombatUnit>>&
     getActiveCombatUnits() const;
 
+    bool isBaseBuildingUnit() const;
+
 private:
     Base base;
     std::vector<std::unique_ptr<CombatUnit>> activeCombatUnits;

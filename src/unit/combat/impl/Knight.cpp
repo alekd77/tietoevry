@@ -1,5 +1,7 @@
 #include "Knight.h"
 
+Knight::Knight() :CombatUnit(-1, 'K', 70, {-1, -1}, 5, 400, 1, 5){}
+
 Knight::Knight(int id, const FieldCoordinates& coordinates)
         :CombatUnit(id, 'K', 70, coordinates, 5, 400, 1, 5) { }
 

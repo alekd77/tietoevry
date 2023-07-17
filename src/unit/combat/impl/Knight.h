@@ -5,6 +5,7 @@
 
 class Knight : public CombatUnit {
 public:
+    Knight();
     Knight(int id, const FieldCoordinates& coordinates);
 
     Knight(int id, int hp, const FieldCoordinates& coordinates);

@@ -11,3 +11,8 @@ ActiveUnits::getActiveCombatUnits() const
 {
     return activeCombatUnits;
 }
+
+bool ActiveUnits::isBaseBuildingUnit() const
+{
+    return base.getBuildingUnit()!='0';
+}
