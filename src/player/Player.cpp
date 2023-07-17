@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Player.h"
 
 Player::Player(const std::string& mapFile, const std::string& statusFile,
@@ -47,9 +46,7 @@ std::vector<std::vector<bool>> Player::getTraversableMap()
                 temp.push_back(true);
             }
         }
-        std::for_each(temp.begin(), temp.end(),
-                [&](bool t) { std::cout << t << " "; });
-        std::cout << std::endl;
+
         traversableGrid.push_back(temp);
     }
 

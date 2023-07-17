@@ -86,8 +86,5 @@ Testing
 mapa.txt
 rozkazy.txt
 status.txt
-
-# For Now
 Makefile
-CMakeLists.txt
 

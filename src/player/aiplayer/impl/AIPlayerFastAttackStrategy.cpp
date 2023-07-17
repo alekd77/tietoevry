@@ -1,5 +1,3 @@
-#include <queue>
-#include <iostream>
 #include "AIPlayerFastAttackStrategy.h"
 #include "../../../util/pathfinder/BFSPathfinder.h"
 
