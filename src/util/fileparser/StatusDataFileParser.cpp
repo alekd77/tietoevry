@@ -1,11 +1,11 @@
 #include "StatusDataFileParser.h"
-#include "../unit/combat/impl/Knight.h"
-#include "../unit/combat/impl/Swordsman.h"
-#include "../unit/combat/impl/Archer.h"
-#include "../unit/combat/impl/Pikeman.h"
-#include "../unit/combat/impl/Ram.h"
-#include "../unit/combat/impl/Catapult.h"
-#include "../unit/combat/impl/Worker.h"
+#include "../../unit/combat/impl/Knight.h"
+#include "../../unit/combat/impl/Swordsman.h"
+#include "../../unit/combat/impl/Archer.h"
+#include "../../unit/combat/impl/Pikeman.h"
+#include "../../unit/combat/impl/Ram.h"
+#include "../../unit/combat/impl/Catapult.h"
+#include "../../unit/combat/impl/Worker.h"
 #include <sstream>
 
 StatusDataFileParser::StatusDataFileParser(const std::string& dataFile)

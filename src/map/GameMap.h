@@ -1,7 +1,7 @@
 #ifndef TIETOEVRY_GAMEMAP_H
 #define TIETOEVRY_GAMEMAP_H
 
-#include "../util/MapDataFileParser.h"
+#include "../util/fileparser/MapDataFileParser.h"
 #include <string>
 #include <vector>
 

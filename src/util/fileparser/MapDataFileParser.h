@@ -2,7 +2,7 @@
 #define TIETOEVRY_MAPDATAFILEPARSER_H
 
 #include "DataFileParser.h"
-#include "../map/Field.h"
+#include "../../map/Field.h"
 
 class MapDataFileParser : public DataFileParser {
 public:

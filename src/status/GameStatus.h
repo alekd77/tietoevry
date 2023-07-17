@@ -2,7 +2,7 @@
 #define TIETOEVRY_GAMESTATUS_H
 
 #include "ActiveUnits.h"
-#include "../util/StatusDataFileParser.h"
+#include "../util/fileparser/StatusDataFileParser.h"
 #include <vector>
 
 class GameStatus {
