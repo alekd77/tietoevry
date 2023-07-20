@@ -11,10 +11,9 @@ public:
     ActiveUnits(const Base& base,
             std::vector<std::unique_ptr<CombatUnit>> activeCombatUnits);
 
-    const Base& getBase() const;
+    Base& getBase();
 
-    const std::vector<std::unique_ptr<CombatUnit>>&
-    getActiveCombatUnits() const;
+    std::vector<std::unique_ptr<CombatUnit>>& getActiveCombatUnits();
 
     bool isBaseBuildingUnit() const;
 

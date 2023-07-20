@@ -21,6 +21,10 @@ bool CombatUnit::canAttack() const { return true; }
 
 bool CombatUnit::canBuild() const { return false; }
 
+void CombatUnit::useActionPoints(int usedActionPoints) {
+    actionPoints -= usedActionPoints;
+}
+
 void CombatUnit::debugDisplay() const
 {
     Unit::debugDisplay();

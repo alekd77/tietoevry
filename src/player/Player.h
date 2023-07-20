@@ -14,9 +14,9 @@ public:
 
     const GameMap& getGameMap();
 
-    const ActiveUnits& getPlayerActiveUnits();
+    ActiveUnits& getPlayerActiveUnits();
 
-    const ActiveUnits& getEnemyActiveUnits();
+    ActiveUnits& getEnemyActiveUnits();
 
     std::vector<std::vector<bool>> getTraversableMap();
 
@@ -24,14 +24,14 @@ public:
             const FieldCoordinates& destinationField);
 
     bool
-    isAttackingUnitPossible(const Unit& attacker, const Unit& target) const;
+    isAttackingUnitPossible(const Unit& attacker, const Unit& target);
 
-    bool isBuildingUnitPossible(const CombatUnit& unit) const;
+    bool isBuildingUnitPossible(const CombatUnit& unit);
 
     void
     orderMovingUnit(const Unit& unit, const FieldCoordinates& destinationField);
 
-    void orderAttackingUnit(const Unit& attacker, const Unit& target);
+    void orderAttackingUnit(CombatUnit& attacker, Unit& target);
 
     void orderBuildingUnit(const CombatUnit& unit);
 
@@ -57,7 +57,9 @@ private:
 
     bool isEnemyUnitOnField(const FieldCoordinates& field);
 
-    bool doesPlayerUnitExist(int unitID) const;
+    bool doesPlayerUnitExist(int unitID);
+
+    bool doesEnemyUnitExist(int unitID);
 
     bool doesEnemyUnitExist(int unitID) const;
 

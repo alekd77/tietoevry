@@ -22,6 +22,8 @@ public:
 
     bool canBuild() const override;
 
+    void useActionPoints(int usedActionPoints);
+
     void debugDisplay() const override;
 
     virtual int calculateDamageForUnitType(char targetUnitType) const = 0;

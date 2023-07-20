@@ -8,8 +8,6 @@ GameStatus::GameStatus(const std::string& statusDataFile)
 
 long GameStatus::getCurrentGoldAmount() const { return currentGoldAmount; }
 
-const ActiveUnits&
-GameStatus::getPlayerActiveUnits() const { return playerActiveUnits; }
+ActiveUnits& GameStatus::getPlayerActiveUnits() { return playerActiveUnits; }
 
-const ActiveUnits&
-GameStatus::getEnemyActiveUnits() const { return enemyActiveUnits; }
+ActiveUnits& GameStatus::getEnemyActiveUnits() { return enemyActiveUnits; }

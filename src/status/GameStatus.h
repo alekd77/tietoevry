@@ -11,9 +11,9 @@ public:
 
     long getCurrentGoldAmount() const;
 
-    const ActiveUnits& getPlayerActiveUnits() const;
+    ActiveUnits& getPlayerActiveUnits();
 
-    const ActiveUnits& getEnemyActiveUnits() const;
+    ActiveUnits& getEnemyActiveUnits();
 
 private:
     StatusDataFileParser statusDataFileParser;

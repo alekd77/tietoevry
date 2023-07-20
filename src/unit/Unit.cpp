@@ -16,6 +16,11 @@ const FieldCoordinates& Unit::getCoordinates() const { return coordinates; }
 
 bool Unit::isAlive() const { return hp>0; }
 
+void Unit::move(const FieldCoordinates& newCoordinates)
+{
+    coordinates = newCoordinates;
+}
+
 void Unit::receiveDamage(int damage) { hp -= damage; }
 
 void Unit::debugDisplay() const
