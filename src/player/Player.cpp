@@ -19,12 +19,12 @@ const GameMap& Player::getGameMap()
     return *gameMap;
 }
 
-const ActiveUnits& Player::getPlayerActiveUnits()
+ActiveUnits& Player::getPlayerActiveUnits()
 {
     return gameStatus.getPlayerActiveUnits();
 }
 
-const ActiveUnits& Player::getEnemyActiveUnits()
+ActiveUnits& Player::getEnemyActiveUnits()
 {
     return gameStatus.getEnemyActiveUnits();
 }
@@ -60,6 +60,10 @@ bool Player::isMovingUnitPossible(const Unit& unit,
         return false;
     }
 
+    if (!unit.isAlive()) {
+        return false;
+    }
+
     if (!unit.canMove()) {
         return false;
     }
@@ -83,13 +87,21 @@ bool Player::isMovingUnitPossible(const Unit& unit,
 }
 
 bool Player::isAttackingUnitPossible(const Unit& attacker,
-        const Unit& target) const
+        const Unit& target)
 {
     if (!doesPlayerUnitExist(attacker.getID())) {
         return false;
     }
 
-    if (!doesPlayerUnitExist(target.getID())) {
+    if (!doesEnemyUnitExist(target.getID())) {
+        return false;
+    }
+
+    if (!attacker.isAlive()) {
+        return false;
+    }
+
+    if (!target.isAlive()) {
         return false;
     }
 
@@ -116,7 +128,7 @@ bool Player::isAttackingUnitPossible(const Unit& attacker,
     return true;
 }
 
-bool Player::isBuildingUnitPossible(const CombatUnit& unitToBuild) const
+bool Player::isBuildingUnitPossible(const CombatUnit& unitToBuild)
 {
     if (gameStatus.getPlayerActiveUnits().isBaseBuildingUnit()) {
         return false;
@@ -136,15 +148,25 @@ void Player::orderMovingUnit(const Unit& unit,
         return;
     }
 
-    commandHandler.orderMoveCommand(unit.getID(), destinationField);
+    auto* combat = dynamic_cast<CombatUnit*>(const_cast<Unit*>(&unit));
+
+    if (combat) {
+        combat->useActionPoints(
+                calculateRequiredActionPointsForMove(unit.getCoordinates(),
+                        destinationField));
+        combat->move(destinationField);
+        commandHandler.orderMoveCommand(unit.getID(), destinationField);
+    }
 }
 
-void Player::orderAttackingUnit(const Unit& attacker, const Unit& target)
+void Player::orderAttackingUnit(CombatUnit& attacker, Unit& target)
 {
     if (!isAttackingUnitPossible(attacker, target)) {
         return;
     }
 
+    target.receiveDamage(attacker.calculateDamageForUnitType(target.getType()));
+    attacker.useActionPoints(calculateRequiredActionPointsForAttack());
     commandHandler.orderAttackCommand(attacker.getID(), target.getID());
 }
 
@@ -262,13 +284,28 @@ bool Player::isEnemyUnitOnField(const FieldCoordinates& field)
     return false;
 }
 
-bool Player::doesPlayerUnitExist(int unitID) const
+bool Player::doesPlayerUnitExist(int unitID)
 {
     if (gameStatus.getPlayerActiveUnits().getBase().getID()==unitID) {
         return true;
     }
 
     for (const auto& unit: gameStatus.getPlayerActiveUnits().getActiveCombatUnits()) {
+        if (unit->getID()==unitID) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Player::doesEnemyUnitExist(int unitID)
+{
+    if (gameStatus.getEnemyActiveUnits().getBase().getID()==unitID) {
+        return true;
+    }
+
+    for (const auto& unit: gameStatus.getEnemyActiveUnits().getActiveCombatUnits()) {
         if (unit->getID()==unitID) {
             return true;
         }
@@ -287,8 +324,8 @@ int Player::calculateRequiredActionPointsForMove(const FieldCoordinates& start,
 int Player::calculateRequiredRangeForAttack(const CombatUnit& attacker,
         const FieldCoordinates& target) const
 {
-    return std::abs(attacker.getRange()-target.getX())
-            +std::abs(attacker.getRange()-target.getY());
+    return std::abs(attacker.getCoordinates().getX()-target.getX())
+            +std::abs(attacker.getCoordinates().getY()-target.getY());
 }
 
 int Player::calculateRequiredActionPointsForAttack() const
