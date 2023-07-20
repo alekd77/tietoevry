@@ -1,18 +1,15 @@
 #include "CommandHandler.h"
-
-#include <utility>
 #include <fstream>
 
-CommandHandler::CommandHandler(std::string commandsFile)
-        :commandsFile(std::move(commandsFile))
+CommandHandler::CommandHandler(const std::string& commandsFile)
+        :commandsFile(commandsFile), currentCommands(std::vector<std::string>())
 {
-    // Check if the file exists
-    if (!doesFileToWriteExist()) {
-        throw std::runtime_error(
-                "Failed to open the "+this->commandsFile+" file.\n");
+    if (!doesCommandsFileExist()) {
+        std::ofstream file(this->commandsFile); // Creates empty file if the given file does not exist
+        file.close();
+    } else {
+        clearCommandsFile();
     }
-
-    clearCommandsFile();
 }
 
 void CommandHandler::orderMoveCommand(int unitID,
@@ -51,7 +48,7 @@ void CommandHandler::saveCommandsToFile()
     ofs.close();
 }
 
-bool CommandHandler::doesFileToWriteExist()
+bool CommandHandler::doesCommandsFileExist()
 {
     std::ifstream file(commandsFile);
     return file.good();

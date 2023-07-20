@@ -6,7 +6,7 @@
 
 class CommandHandler {
 public:
-    explicit CommandHandler(std::string commandsFile);
+    explicit CommandHandler(const std::string& commandsFile);
 
     void orderMoveCommand(int unitID, FieldCoordinates destinationField);
 
@@ -20,7 +20,7 @@ private:
     std::string commandsFile;
     std::vector<std::string> currentCommands;
 
-    bool doesFileToWriteExist();
+    bool doesCommandsFileExist();
 
     void clearCommandsFile();
 };
