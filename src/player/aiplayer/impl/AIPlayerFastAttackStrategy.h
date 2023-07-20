@@ -15,7 +15,7 @@ public:
 private:
     Knight knightUnitProperties;
 
-    bool isBuildingKnightPossible() const;
+    bool isBuildingKnightPossible();
 
     void orderBuildingKnight();
 

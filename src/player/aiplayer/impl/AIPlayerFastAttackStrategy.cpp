@@ -24,13 +24,13 @@ void AIPlayerFastAttackStrategy::gameStrategy()
             orderKnightsMoving();
         }
 
-//        if (isEnemyBaseAttackPossible()) {
-//            orderEnemyBaseAttack();
-//        }
+        if (isEnemyBaseAttackPossible()) {
+            orderEnemyBaseAttack();
+        }
     }
 }
 
-bool AIPlayerFastAttackStrategy::isBuildingKnightPossible() const
+bool AIPlayerFastAttackStrategy::isBuildingKnightPossible()
 {
     return isBuildingUnitPossible(knightUnitProperties);
 }
@@ -42,7 +42,7 @@ void AIPlayerFastAttackStrategy::orderBuildingKnight()
 
 bool AIPlayerFastAttackStrategy::isEnemyBaseAttackPossible()
 {
-    for (const auto& activeKnight: getPlayerActiveUnits().getActiveCombatUnits()) {
+    for (auto& activeKnight: getPlayerActiveUnits().getActiveCombatUnits()) {
         if (!isAttackingUnitPossible(*activeKnight,
                 getEnemyActiveUnits().getBase())) {
             return false;
@@ -54,7 +54,7 @@ bool AIPlayerFastAttackStrategy::isEnemyBaseAttackPossible()
 
 void AIPlayerFastAttackStrategy::orderEnemyBaseAttack()
 {
-    for (const auto& activeKnight: getPlayerActiveUnits().getActiveCombatUnits()) {
+    for (auto& activeKnight: getPlayerActiveUnits().getActiveCombatUnits()) {
         orderAttackingUnit(*activeKnight, getEnemyActiveUnits().getBase());
     }
 }
@@ -99,13 +99,13 @@ void AIPlayerFastAttackStrategy::orderKnightsMoving()
     std::vector<FieldCoordinates> shortestPath =
             pathfinder.findShortestPath(knightsPosition, validAttackPositions);
 
-    for (const auto& knightUnit: getPlayerActiveUnits().getActiveCombatUnits()) {
+    for (auto& knightUnit: getPlayerActiveUnits().getActiveCombatUnits()) {
         FieldCoordinates maxTravelDistanceField = findMaxTravelDistanceField(
                 shortestPath, knightUnit->getCoordinates(),
                 knightUnit->getActionPoints());
 
         if (maxTravelDistanceField.getX()!=knightUnit->getCoordinates().getX()
-                && maxTravelDistanceField.getY()
+                || maxTravelDistanceField.getY()
                         !=knightUnit->getCoordinates().getY()) {
             orderMovingUnit(*knightUnit, maxTravelDistanceField);
         }
