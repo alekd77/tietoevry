@@ -19,6 +19,8 @@ public:
 
     bool isAlive() const;
 
+    void move(const FieldCoordinates& coordinates);
+
     void receiveDamage(int damage);
 
     virtual bool canMove() const = 0;

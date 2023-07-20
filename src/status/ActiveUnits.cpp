@@ -4,10 +4,9 @@ ActiveUnits::ActiveUnits(const Base& base,
         std::vector<std::unique_ptr<CombatUnit>> activeCombatUnits)
         :base(base), activeCombatUnits(std::move(activeCombatUnits)) { }
 
-const Base& ActiveUnits::getBase() const { return base; }
+Base& ActiveUnits::getBase() { return base; }
 
-const std::vector<std::unique_ptr<CombatUnit>>&
-ActiveUnits::getActiveCombatUnits() const
+std::vector<std::unique_ptr<CombatUnit>>& ActiveUnits::getActiveCombatUnits()
 {
     return activeCombatUnits;
 }
