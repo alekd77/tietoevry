@@ -11,6 +11,14 @@
 StatusDataFileParser::StatusDataFileParser(const std::string& dataFile)
         :DataFileParser(dataFile)
 {
+    readDataFile();
+
+    if (dataFileLines.size()<3) {
+        throw std::runtime_error("Invalid (insufficient) "+dataFile
+                +" file content. Status data file should describe at least: "
+                 "current gold amount, player and enemy base");
+    }
+
     // Initialize the combatUnitTypeMap with lambdas for creating each combat unit type
     combatUnitTypeMap = {
             {'K', [](int id, int hp, FieldCoordinates coords) {

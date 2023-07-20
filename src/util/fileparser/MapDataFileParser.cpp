@@ -2,7 +2,13 @@
 #include "MapDataFileParser.h"
 
 MapDataFileParser::MapDataFileParser(const std::string& dataFile)
-        :DataFileParser(dataFile) { }
+        :DataFileParser(dataFile) {
+    readDataFile();
+
+    if (dataFileLines.empty()) {
+        throw std::runtime_error("Invalid (empty) " + dataFile + " file content.");
+    }
+}
 
 std::vector<std::vector<Field>> MapDataFileParser::parseMapGrid()
 {

@@ -9,7 +9,10 @@ public:
     explicit DataFileParser(const std::string& dataFile);
 
 protected:
+    std::string dataFile;
     std::vector<std::string> dataFileLines;
+
+    void readDataFile();
 };
 
 #endif //TIETOEVRY_DATAFILEPARSER_H
