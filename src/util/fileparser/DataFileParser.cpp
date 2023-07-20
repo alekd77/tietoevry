@@ -1,13 +1,15 @@
+#include "DataFileParser.h"
 #include <fstream>
 #include <stdexcept>
-#include "DataFileParser.h"
 
 DataFileParser::DataFileParser(const std::string& dataFile)
+        :dataFile(dataFile), dataFileLines(std::vector<std::string>()) { }
+
+void DataFileParser::readDataFile()
 {
-    dataFileLines = std::vector<std::string>();
     std::ifstream inputFile(dataFile);
 
-    if (!inputFile.is_open()) {
+    if (!inputFile.good()) {
         throw std::runtime_error("Failed to open the "+dataFile+" file.\n");
     }
 
